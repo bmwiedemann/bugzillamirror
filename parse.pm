@@ -45,12 +45,13 @@ sub parse_bugmail($)
 		last if($l eq "");
 		my @a=split(/\|/, $l);
 	    	foreach(@a) {s/^\s+//; s/\s+$//;}
+		my $v=$a[2]||"";
 		if($a[0]) {
 		    $heading=$a[0];
+		    $data{$heading}=$v;
 		} else {
-		    $data{$heading}.=" " # continuation lines
+		    $data{$heading}.=" $v" # continuation lines
 		}
-		$data{$heading}.=$a[2]||"";
 	    }
 	}
     }
