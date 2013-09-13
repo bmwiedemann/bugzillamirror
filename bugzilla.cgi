@@ -153,8 +153,9 @@ if(my $t=param("topic")) {
 #	$cond.=" AND MATCH ( descr, assign ) AGAINST ( ? )";
 #	push(@condvars, $t);
 }
+my %since=(0=>"ever", 1=>"a day", 7=>"a week", 31=>"a month", 122=>"4 months", 365=>"a year" );
 my $since=param("since");
-if(!defined($since)) {$since=365; param("since",$since)}
+if(!defined($since)) {$since=122; param("since",$since)}
 if($since) {
 	push(@cond, " ( updated_at > ? ) ");
 	push(@condvars, time-($since*24*60*60));
@@ -163,8 +164,6 @@ my $cond="";
 if(@cond) {
 	$cond="WHERE ".join(" AND ", @cond);
 }
-
-my %since=(0=>"ever", 1=>"a day", 7=>"a week", 31=>"a month", 122=>"4 months", 365=>"a year" );
 
 print start_form(-method=>"GET"),
 	"since ",popup_menu(-name=>"since", -values=>[sort {$a<=>$b} keys %since], -labels=>\%since),"  ; ",
