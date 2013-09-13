@@ -1,3 +1,6 @@
+# Written 2013 by Bernhard M. Wiedemann
+# Licensed under GNU GPL v2
+
 package parse;
 use Email::Simple;
 use Date::Parse;
