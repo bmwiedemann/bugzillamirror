@@ -1,0 +1,36 @@
+This software allows to import and keep tracking
+the state of bugs in a remote bugzilla
+by following bug mails such as
+http://lists.opensuse.org/opensuse-bugs/
+and provides a web UI to allow everyone to query the DB.
+
+It uses mysql with indexes for speedy retrieval
+and has a simplified database structure
+which only tracks the current state of every bug
+
+
+Install:
+  debian: aptitude install libtimedate-perl libemail-simple-perl libdbi-perl libdbd-mysql-perl
+  openSUSE: zypper install perl-TimeDate perl-Email-Simple perl-DBI perl-DBD-mysql
+
+
+put into ~/.dbpasswd
+$dbhost="YOURDBIP";
+$dbuser="YOURDBUSER";
+$dbpasswd="YOURDBPASSWORD";
+and adjust the mysql db-name in bugzilla.pm and bugzilla.cgi
+
+
+in the ~/.forward file of the receiving user, put
+\YOURUSERNAME,|/path/to/mailreceiver.pl
+
+note: if you do not want to store emails on that address,
+      can omit \YOURUSERNAME, in the .forward file
+
+
+Usage:
+./main.pl filename.eml ...
+
+When importing old email files it is important to list them
+in chronologic order, because later updates will overwrite the state.
+See import.sh for a sample call.
