@@ -5,7 +5,7 @@ package bugzilla;
 use DBI;
 
 our %sevmap = (Cri=>1, Maj=>2, Nor=>3, Min=>4, Enh=>5);
-our %statemap = (NEW=>1, ASSIGNED=>2, NEEDINFO=>3, RESOLVED=>4, VERIFIED=>5, CLOSED=>6, REOPENED=>7);
+our %statemap = (NEW=>1, ASSIGNED=>2, NEEDINFO=>3, RESOLVED=>-1, VERIFIED=>-2, CLOSED=>-3, REOPENED=>7);
 
 my $dbhost="192.168.235.1";
 my $connectionInfo="dbi:mysql:bernhard_bugzilla;$dbhost";
