@@ -118,7 +118,8 @@ if($r) {
 # have the same list for same users
 	#my $ip=$ENV{REMOTE_ADDR}; $ip=~s/[.:]//g; srand($ip);
 	my @randbugs=shuffle(@$r);
-	print h1("Listing $numbugs/$n random bugs");
+	my $n2=($numbugs>$n?$n:$numbugs);
+	print h1("Listing $n2/$n random bugs");
 	my $max=@randbugs;
 	$max=$numbugs if($max>$numbugs);
 	foreach my $b (@randbugs[0..$max-1]) {
