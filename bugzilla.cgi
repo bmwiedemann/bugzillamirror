@@ -91,6 +91,14 @@ if($since) {
 	push(@condvars, time-($since*24*60*60));
 }
 if(!defined($since{$since})) { $since{$since}="custom" }
+
+my $wantclosed=param("closed");
+if(!defined($wantclosed)) {$wantclosed=0; param("closed",$wantclosed)}
+if($wantclosed) {
+	my $op=($wantclosed==1?"<":">");
+	push(@cond, " ( state $op 0 ) ");
+}
+
 my $cond="";
 if(@cond) {
 	$cond="WHERE ".join(" AND ", @cond);
@@ -98,6 +106,7 @@ if(@cond) {
 
 print start_form(-method=>"GET"),
 	"since ",popup_menu(-name=>"since", -values=>[sort {$a<=>$b} keys %since], -labels=>\%since),"  ; ",
+   "state ",popup_menu(-name=>"closed", -values=>[-1..1], -labels=>{-1=>"open", 0=>"any", 1=>"closed"})," ; ",
 	textfield(-name=>"topic")," limit topic -&gt; ",
 	qq{<input type="submit" value="filter">},br,end_form;
 
