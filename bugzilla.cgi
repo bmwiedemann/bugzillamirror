@@ -160,6 +160,7 @@ if($since) {
 	push(@cond, " ( updated_at > ? ) ");
 	push(@condvars, time-($since*24*60*60));
 }
+if(!defined($since{$since})) { $since{$since}="custom" }
 my $cond="";
 if(@cond) {
 	$cond="WHERE ".join(" AND ", @cond);
