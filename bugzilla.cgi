@@ -56,6 +56,8 @@ sub bnclink($)
 sub showbug($)
 { my $bugref=shift;
 	my ($id,$state,$sev,$pri,$descr,$assign, $created, $updated)=@$bugref;
+	$assign=~s/\@/(&auml;t)/g;
+	$assign=~s/\.[^.]+$//g; # increase email privacy
 	print bnclink($id)." state=$state sev=$sev pri=$pri assigned=$assign descr=$descr<br/>\n";
 }
 
