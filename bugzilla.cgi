@@ -96,6 +96,12 @@ if($since) {
 }
 if(!defined($since{$since})) { $since{$since}="custom" }
 
+my $until=param("until")||0;
+if($until) {
+	push(@cond, " ( updated_at < ? ) ");
+	push(@condvars, time-($until*24*60*60));
+}
+
 my $wantclosed=param("closed");
 if(!defined($wantclosed)) {$wantclosed=0; param("closed",$wantclosed)}
 if($wantclosed) {
