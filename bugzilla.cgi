@@ -87,7 +87,7 @@ if(my $t=param("topic")) {
 	push(@cond, " ( descr LIKE ? OR assign LIKE ? ) ");
 	push(@condvars, $t, $t);
 }
-my %since=(0=>"ever", 1=>"a day", 7=>"a week", 31=>"a month", 122=>"4 months", 365=>"a year" );
+my %since=(0=>"ever", 0.041667=>"an hour", 1=>"a day", 7=>"a week", 31=>"a month", 122=>"4 months", 365=>"a year" );
 my $since=param("since");
 if(!defined($since)) {$since=122; param("since",$since)}
 if($since) {
