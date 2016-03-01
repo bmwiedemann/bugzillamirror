@@ -9,7 +9,9 @@ use CGI ":standard";
 require LWP::Simple;
 use DBI;
 use List::Util "shuffle";
+use Time::HiRes qw(gettimeofday tv_interval);
 
+my $starttime=[gettimeofday()];
 our $dbh;
 my $dbhost="192.168.235.1";
 my $connectionInfo="dbi:mysql:bernhard_bugzilla;$dbhost";
@@ -144,5 +146,6 @@ if(param("source")) {
 print br.a({-href=>"?source=1"}, "view CGI source");
 print br."source coude is tracked ".a({-href=>"https://github.com/bmwiedemann/bugzillamirror"}, "on github");
 
-print end_html();
+my $elapsed = sprintf("%.3fs", tv_interval ($starttime));
+print br,"page took $elapsed to render", end_html();
 
