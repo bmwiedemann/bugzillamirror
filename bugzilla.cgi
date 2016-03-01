@@ -46,7 +46,7 @@ if(0) {
 ");
 }
 
-print header(),start_html(-title=>"Bugzilla Mirror", -head=>['<meta name="robots" content="index, nofollow"/>', Link({-rel=>"shortcut icon", -href=>"/favicon.ico"}), Link({-rel=>"icon", -type=>"image/png", -href=>"http://static.opensuse.org/themes/bento/images/favicon.png"})]);
+print header(),start_html(-title=>"Bugzilla Mirror", -head=>['<meta name="robots" content="index, nofollow"/>', Link({-rel=>"shortcut icon", -href=>"/favicon.ico"}), Link({-rel=>"icon", -type=>"image/png", -href=>"//static.opensuse.org/themes/bento/images/favicon.png"})]);
 
 our $keepoptions="";
 
